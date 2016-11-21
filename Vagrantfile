@@ -18,6 +18,9 @@ Vagrant.configure("2") do |config|
     jungle.vm.network "private_network", ip: "192.168.85.92"
     jungle.vm.network "forwarded_port", guest: 80, host: 9292
     jungle.vm.provision "shell", path: "script.sh"
+    jungle.vm.provider "virtualbox" do |v|
+       v.name = "vm4dev-jungle"
+    end
   end
   config.vm.define "test" do |test|
     test.vm.box = "ubuntu/trusty64"
@@ -25,6 +28,9 @@ Vagrant.configure("2") do |config|
     test.vm.network "private_network", ip: "192.168.85.93"
     test.vm.network "forwarded_port", guest: 80, host: 9393
     test.vm.provision "shell", path: "test.sh"
+    test.vm.provider "virtualbox" do |v|
+       v.name = "vm4dev-test"
+    end
   end
   config.vm.define "ansible" do |ansible|
     ansible.vm.box = "ubuntu/trusty64"
@@ -33,6 +39,9 @@ Vagrant.configure("2") do |config|
     ansible.vm.network "forwarded_port", guest: 80, host: 9494
     ansible.vm.provision "ansible" do |ans|
       ans.playbook = "playbook.yml"
+    end
+    ansible.vm.provider "virtualbox" do |v|
+       v.name = "vm4dev-ansible"
     end
   end
   # Disable automatic box update checking. If you disable this, then
