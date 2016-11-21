@@ -9,3 +9,14 @@
 - `vagrant provision ansible`, 这里的 ansible 是一个主机名
 - `vagrant reload`
 - `vagrant destroy`
+
+## 调试
+
+参考 https://www.vagrantup.com/docs/other/debugging.html
+
+
+`VAGRANT_LOG=error vagrant provision ansible` 得到的这个不是错误
+
+~~~
+ERROR loader: Unknown config sources https://github.com/mitchellh/vagrant/issues/4585
+~~~
